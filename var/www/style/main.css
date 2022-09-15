@@ -1,0 +1,16 @@
+@font-face {
+  font-family: ProximaNova-Regular;
+  src: url("../style/font/ProximaNova-Regular.otf");
+}
+
+@font-face {
+  font-family: Proxima Nova Bold;
+  src: url("../style/font/Proxima Nova Bold.otf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: ProximaNova-Regular;
+}
+/*# sourceMappingURL=main.css.map */

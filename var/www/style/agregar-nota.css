@@ -1,0 +1,82 @@
+@font-face {
+  font-family: ProximaNova-Regular;
+  src: url("../style/font/ProximaNova-Regular.otf");
+}
+
+@font-face {
+  font-family: Proxima Nova Bold;
+  src: url("../style/font/Proxima Nova Bold.otf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: ProximaNova-Regular;
+}
+
+.main {
+  width: 80%;
+  margin: 20px auto;
+  background: #e6e6e6;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.main label {
+  display: block;
+  font-family: Proxima Nova Bold;
+}
+
+.main textarea {
+  background: #FFFFFF;
+  width: 100%;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #db4545;
+  font-size: 15px;
+  padding: 10px 7px;
+  resize: none;
+  font-family: ProximaNova-Regular;
+}
+
+.main textarea:hover {
+  border-color: #f8b1b1;
+}
+
+.main textarea:focus {
+  border: 1px solid #f8b1b1;
+  -webkit-box-shadow: 0px 0px 8px #f8b1b1;
+          box-shadow: 0px 0px 8px #f8b1b1;
+  outline: none;
+}
+
+.main input[type="submit"] {
+  display: block;
+  margin: 0px auto 0px auto;
+  font-size: 15px;
+  font-family: Proxima Nova Bold;
+  color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+  background: #db4545;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 35px;
+}
+
+.main input[type="submit"]:hover {
+  background: #f8b1b1;
+  cursor: pointer;
+  color: #3a3a3a;
+}
+
+.main input[type="submit"]:focus {
+  -webkit-box-shadow: 0px 0px 8px #f8b1b1;
+          box-shadow: 0px 0px 8px #f8b1b1;
+}
+/*# sourceMappingURL=agregar-nota.css.map */
