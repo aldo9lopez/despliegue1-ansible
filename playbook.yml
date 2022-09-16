@@ -1,12 +1,17 @@
 name: setup webserver with vhost
   hosts: all
   become: true
-  vars:
-    app_user: "apache"
-    http_host: "example.com"
-    http_conf: "example.com.conf"
-    http_port: "80"
+  vars_files:
+    - vars/default.yml
   tasks:
+    - name: Install prerequisites
+      apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+      loop: [ 'aptitude' ]
+
+    - name: install services
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'apache2', 'mysql-server', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+
     - name: httpd installed
       ansible.builtin.yum:
         name: httpd
@@ -19,12 +24,6 @@ name: setup webserver with vhost
         owner: "{{ app_user }}"
         mode: '0755'
         setype: "httpd_sys_content_t"
-
-    - name: custom index.html
-      ansible.builtin.copy:
-        dest: "/var/www/{{ http_host }}/index.html"
-        content: |
-                    Custom Web Page
 
     - name: setup Apache virtualhost
       ansible.builtin.template:
@@ -43,3 +42,33 @@ name: setup webserver with vhost
         state: enabled
         immediate: true
         permanent: true
+
+    - name: MySQL - Update mysql root passwd
+      mysql_user:
+        name: root 
+        password: "{{mysql_root_new_pass}}"
+        login_user: root
+        login_password: "root"
+    
+    - name: create mysql db
+      mysql_db: name=prueba state=present login_user=root login_password="root"
+      
+    - name: sql db
+      mysql_db: name=prueba state=import target=/var/dump/MyDb.sql login_user=root login_password="root"
+    
+    - name: Configure ufw rules
+      ufw: 
+        rule: allow 
+        port: {{ http_port }} 
+        proto: tcp
+
+  handlers:
+    - name: Restart apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted

@@ -1,0 +1,7 @@
+---
+mysql_root_password: "root"
+app_user: "webmaster"
+http_host: "alopez.com"
+http_conf: "alopez.com.conf"
+http_port: "80"
+disable_default: true
